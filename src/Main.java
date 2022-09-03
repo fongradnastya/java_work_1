@@ -1,8 +1,9 @@
-import java.io.IOException;
-import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
-        int n = InputMatrix.getInt();
+        Matrix matrix = new Matrix();
+        matrix.userSize();
+        int[] size = matrix.getMatrixSize();
+        System.out.printf("%d:%d", size[0], size[1]);
     }
+
 }
