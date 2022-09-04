@@ -1,8 +1,8 @@
 import java.util.Scanner;
 import java.util.Random;
 public class Matrix {
-    private int[] matrixSize;
-
+    private final int[] matrixSize;
+    private int[][] matrix;
     public Matrix () {
         matrixSize = new int[]{0, 0};
     }
@@ -33,13 +33,31 @@ public class Matrix {
         matrixSize[1] = getInt(input);
         input.close();
     }
-    public void randomSize() {
-        Random random = new Random();
+    public void randomSize(Random random) {
         matrixSize[0] = random.nextInt(15);
         matrixSize[1] = random.nextInt(15);
     }
+    public void randomMatrix() {
+        Random random = new Random();
+        randomSize(random);
+        matrix = new int[matrixSize[0]][matrixSize[1]];
+        for( int i = 0; i < matrixSize[0]; i++){
+            for (int j = 0; j < matrixSize[1]; j++){
+                matrix[i][j] = random.nextInt(500);
+            }
+        }
+    }
     public int[] getMatrixSize(){
         return matrixSize;
+    }
+
+    public void printMatrix(){
+        for( int i = 0; i < matrixSize[0]; i++){
+            for (int j = 0; j < matrixSize[1]; j++){
+                System.out.printf("%d  ", matrix[i][j]);
+            }
+            System.out.println("");
+        }
     }
 
 }
