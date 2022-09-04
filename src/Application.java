@@ -13,7 +13,7 @@ public class Application {
         Matrix calculation = null;
         boolean end = false;
         while (! end){
-            int command = getCommand();
+            int command = ConsoleInput.getCommand();
             System.out.println(command);
             switch (command) {
                 case 1: {
@@ -38,6 +38,7 @@ public class Application {
                 }
                 case -1: {
                     end = true;
+                    ConsoleInput.close();
                     break;
                 }
             }
@@ -49,17 +50,5 @@ public class Application {
         System.out.println("Print 3 to output the calculation");
         System.out.println("Print -1 to exit");
     }
-    public static int getCommand(){
-        Scanner scanner = new Scanner(System.in);
-        int command = 0;
-        while (command > 3 | command == 0 | command < -1){
-            System.out.print("Enter your command: ");
-            command = ConsoleInput.getInt(scanner);
-            if (command > 3 | command == 0 | command < -1) {
-                System.out.println("Wrong command!");
-            }
-        }
-        scanner.close();
-        return command;
-    }
+
 }

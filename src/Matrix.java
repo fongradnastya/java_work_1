@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.Random;
+
 public class Matrix {
     private final int[] matrixSize;
     private int[][] matrix;
@@ -50,7 +51,9 @@ public class Matrix {
     public int[] getMatrixSize(){
         return matrixSize;
     }
-
+    public int getElement(int posX, int posY){
+        return matrix[posX][posY];
+    }
     public void printMatrix(){
         for( int i = 0; i < matrixSize[0]; i++){
             for (int j = 0; j < matrixSize[1]; j++){
@@ -59,5 +62,4 @@ public class Matrix {
             System.out.println("");
         }
     }
-
 }
