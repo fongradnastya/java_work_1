@@ -36,6 +36,16 @@ public class Application {
                     break;
                 }
                 case 4: {
+                    if (status == Status.CALCULATED){
+                        int number = 5;
+                        int[] array = calculation.createFrequencyArray(matrix, number);
+                        for(int i = 0; i < array.length; i++){
+                            System.out.println(array[i]);
+                        }
+                    }
+                    break;
+                }
+                case 6: {
                     printMenu();
                 }
                 case -1: {
