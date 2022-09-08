@@ -1,38 +1,23 @@
-import java.util.Scanner;
 import java.util.Random;
 
 public class Matrix {
-    private final int[] matrixSize;
-    private int[][] matrix;
+    int[] matrixSize;
+    int[][] matrix = null;
     public Matrix () {
         matrixSize = new int[]{0, 0};
     }
-    private int getInt(Scanner myScanner) {
-        int num = 0;
-        while (num == 0)
-        {
-            System.out.print("Number: ");
-            String line = myScanner.nextLine();
-            try
-            {
-                num = Integer.parseInt(line);
-                break;
-            }
-            catch (NumberFormatException e)
-            {
-                System.out.println("Wrong number format! Please, try again");
-            }
-        }
-        System.out.printf("Your number: %d \n", num);
-        return num;
-    }
     public void userSize(){
-        Scanner input = new Scanner(System.in);
-        System.out.println("Please, enter x matrix size");
-        matrixSize[0] = getInt(input);
-        System.out.println("Please, enter y matrix size");
-        matrixSize[1] = getInt(input);
-        input.close();
+        System.out.println("Please, enter x matrix size:");
+        matrixSize[0] = ConsoleInput.getIntString();
+        System.out.println("Please, enter y matrix size:");
+        matrixSize[1] = ConsoleInput.getIntString();
+    }
+    public void userMatrix(){
+        matrix = null;
+        userSize();
+        while (matrix == null){
+            matrix = ConsoleInput.getMatrix(matrixSize[0], matrixSize[1]);
+        }
     }
     public void randomSize(Random random) {
         matrixSize[0] = random.nextInt(15);
@@ -55,9 +40,10 @@ public class Matrix {
         return matrix[posX][posY];
     }
     public void printMatrix(){
-        for( int i = 0; i < matrixSize[0]; i++){
-            for (int j = 0; j < matrixSize[1]; j++){
-                System.out.printf("%d  ", matrix[i][j]);
+        System.out.println("Your matrix:");
+        for(int y = 0; y < matrixSize[1]; y++){
+            for (int x = 0; x < matrixSize[0]; x++){
+                System.out.printf("%d  ", matrix[x][y]);
             }
             System.out.println("");
         }
