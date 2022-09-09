@@ -34,8 +34,8 @@ public class Matrix {
      * @param random - объект класса Random
      */
     private void randomSize(Random random) {
-        matrixSize[0] = random.nextInt(15);
-        matrixSize[1] = random.nextInt(15);
+        matrixSize[0] = random.nextInt(15) + 1;
+        matrixSize[1] = random.nextInt(15) + 1;
     }
 
     /**

@@ -42,27 +42,72 @@ public class FrequencyMatrix extends Matrix{
         return frequency;
     }
 
-    public int[] createFrequencyArray(Matrix matrix, int counter) {
-        int[] frequencyArray = new int[counter];
+    private boolean hasElement(int[] array, int element){
+        for(int i = 0; i < array.length; i++){
+            if(array[i] == element){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int[] createFrequencyArray(Matrix matrix, int size) {
+        int[] frequencyArray = new int[size];
         int array_id = 0;
         boolean changed = false;
-        int current = maxFrequency;
-        while (counter > 0 && current > 0 && array_id < counter) {
+        int currentMax = maxFrequency;
+        while (currentMax > 0 && array_id < size) {
             for (int i = 0; i < matrixSize[0]; i++) {
                 for (int j = 0; j < matrixSize[1]; j++) {
-                    if (this.matrix[i][j] == current) {
-                        if (array_id == 0 || frequencyArray[array_id - 1] != matrix.getElement(i, j)) {
-                            frequencyArray[array_id] = matrix.getElement(i, j);
-                            array_id++;
-                            counter--;
-                            changed = true;
+                    if (this.matrix[i][j] == currentMax) {
+                        int element = matrix.getElement(i, j);
+                        if (! hasElement(frequencyArray, element)) {
+                            if(array_id < size){
+                                frequencyArray[array_id] = element;
+                                array_id++;
+                                changed = true;
+                            }
+                            else {
+                                return frequencyArray;
+                            }
                         }
 
                     }
                 }
             }
             if (!changed) {
-                current--;
+                currentMax--;
+            }
+            changed = false;
+        }
+        return Arrays.copyOfRange(frequencyArray, 0, array_id);
+    }
+    public int[] leastFrequencyArray(Matrix matrix, int size){
+        int[] frequencyArray = new int[size];
+        int array_id = 0;
+        boolean changed = false;
+        int currentMin = 0;
+        while (currentMin <= maxFrequency && array_id < size) {
+            for (int i = 0; i < matrixSize[0]; i++) {
+                for (int j = 0; j < matrixSize[1]; j++) {
+                    if (this.matrix[i][j] == currentMin) {
+                        int element = matrix.getElement(i, j);
+                        if (! hasElement(frequencyArray, element)) {
+                            if(array_id < size){
+                                frequencyArray[array_id] = element;
+                                array_id++;
+                                changed = true;
+                            }
+                            else {
+                                return frequencyArray;
+                            }
+                        }
+
+                    }
+                }
+            }
+            if (!changed) {
+                currentMin++;
             }
             changed = false;
         }

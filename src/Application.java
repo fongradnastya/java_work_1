@@ -49,9 +49,23 @@ public class Application {
                     if (status == Status.CALCULATED){
                         int number = 5;
                         int[] array = calculation.createFrequencyArray(matrix, number);
+                        System.out.printf("%d the most frequent elements: ", number);
                         for(int i = 0; i < array.length; i++){
-                            System.out.println(array[i]);
+                            System.out.printf("%d ", array[i]);
                         }
+                        System.out.println("");
+                    }
+                    break;
+                }
+                case 5:{
+                    if (status == Status.CALCULATED){
+                        int number = 5;
+                        int[] array = calculation.leastFrequencyArray(matrix, number);
+                        System.out.printf("%d the least frequent elements: ", number);
+                        for(int i = 0; i < array.length; i++){
+                            System.out.printf("%d ", array[i]);
+                        }
+                        System.out.println("");
                     }
                     break;
                 }
