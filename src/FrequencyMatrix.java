@@ -1,6 +1,16 @@
 import java.util.Arrays;
+
+/**
+ * Класс FrequencyMatrix наследуется от Matrix и содержит методы для подсчёта встречаемости символов
+ * исходной матрицы
+ */
 public class FrequencyMatrix extends Matrix{
     private int maxFrequency = 0;
+
+    /**
+     * Метод createMatrix создаёт матрицу с элементами. равными частоте элементов исходной матрицы
+     * @param matrix - исходная матрица для подсчёта частоты
+     */
     public void createMatrix(Matrix matrix) {
         matrixSize = matrix.getMatrixSize();
         this.matrix = new int[matrixSize[0]][matrixSize[1]];
@@ -15,6 +25,13 @@ public class FrequencyMatrix extends Matrix{
             }
         }
     }
+
+    /**
+     * Метод countElementFrequency вычисляет количество повторений данного элемента внутри матрицы
+     * @param element - заданный элемент типа int
+     * @param matrix - объект типа Matrix, внутри которого осуществляется поиск
+     * @return frequency - число повторений данного элемента
+     */
     private int countElementFrequency(int element, Matrix matrix){
         int frequency = 0;
         for( int i = 0; i < matrixSize[0]; i++) {

@@ -1,17 +1,26 @@
 import java.util.Random;
 
+/**
+ * Класс Matrix реализует методы для создания случайных и пользовательских матриц
+ */
 public class Matrix {
     int[] matrixSize;
     int[][] matrix = null;
     public Matrix () {
         matrixSize = new int[]{0, 0};
     }
+
+    /**
+     * Метод userSize инициализирует поле matrixSize пользовательским значением
+     */
     public void userSize(){
-        System.out.println("Please, enter x matrix size:");
-        matrixSize[0] = ConsoleInput.getIntString();
-        System.out.println("Please, enter y matrix size:");
-        matrixSize[1] = ConsoleInput.getIntString();
+        matrixSize[0] = ConsoleInput.getSize('x');
+        matrixSize[1] = ConsoleInput.getSize('y');
     }
+
+    /**
+     * Метод userMatrix создаёт матрицу из пользовательских значений
+     */
     public void userMatrix(){
         matrix = null;
         userSize();
@@ -19,10 +28,19 @@ public class Matrix {
             matrix = ConsoleInput.getMatrix(matrixSize[0], matrixSize[1]);
         }
     }
-    public void randomSize(Random random) {
+
+    /**
+     * Метод randomSize инициализирует поле matrixSize случайным значением
+     * @param random - объект класса Random
+     */
+    private void randomSize(Random random) {
         matrixSize[0] = random.nextInt(15);
         matrixSize[1] = random.nextInt(15);
     }
+
+    /**
+     * Метод randomMatrix создаёт матрицу из случайных значений
+     */
     public void randomMatrix() {
         Random random = new Random();
         randomSize(random);
@@ -33,12 +51,28 @@ public class Matrix {
             }
         }
     }
+
+    /**
+     * Метод getMatrixSize возвращает текущий размер матрицы
+     * @return matrixSize - массив из двух целочисленных элементов
+     */
     public int[] getMatrixSize(){
         return matrixSize;
     }
+
+    /**
+     * Метод getElement возвращает один из элементов матрицы
+     * @param posX - позиция элемента в строке
+     * @param posY - позиция элемента в столбце
+     * @return int значение элемента матрицы
+     */
     public int getElement(int posX, int posY){
         return matrix[posX][posY];
     }
+
+    /**
+     * Метод printMatrix печатает текущую матрицу в консоль
+     */
     public void printMatrix(){
         System.out.println("Your matrix:");
         for(int y = 0; y < matrixSize[1]; y++){

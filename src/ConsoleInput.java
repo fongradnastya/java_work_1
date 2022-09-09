@@ -1,37 +1,66 @@
+import org.jetbrains.annotations.Nullable;
 import java.util.Scanner;
 
+/**
+ * Класс ConsoleInput содержит статические методы для считывания пользовательских данных из консоли
+ */
 public class ConsoleInput {
+    /**
+     *
+     */
     private final static Scanner scanner = new Scanner(System.in);
-    public static int getInt(){
-        int item = 0;
-        if (scanner.hasNextInt()){
-            item = scanner.nextInt();
-        }
-        return item;
-    }
+
+    /**
+     * Метод getIntString считывает строку, содержащую одно число типа int
+     * @return number - считанное целое число
+     */
     public static int getIntString() {
-        int num = 0;
-        while (num == 0)
+        int number = 0;
+        while (number == 0)
         {
-            String line = scanner.nextLine();
-            try
-            {
-                num = Integer.parseInt(line);
-                break;
-            }
-            catch (NumberFormatException e)
-            {
-                System.out.println("Wrong number format! Please, try again");
+            if(scanner.hasNext()){
+                String line = scanner.nextLine();
+                try
+                {
+                    number = Integer.parseInt(line);
+                    break;
+                }
+                catch (NumberFormatException e)
+                {
+                    System.out.println("Wrong number format!");
+                    return 0;
+                }
             }
         }
-        return num;
-    }
-    public static int getCommand(){
-        System.out.print("Enter your command: ");
-        return ConsoleInput.getInt();
+        return number;
     }
 
-    public static int[][] getMatrix(int sizeX, int sizeY){
+    /**
+     * Метод getCommand считывает комманду из консоли
+     * @return - комманда в виде числа типа int
+     */
+    public static int getCommand(){
+        System.out.print("Enter your command: ");
+        return ConsoleInput.getIntString();
+    }
+    public static int getSize(char axis){
+        int number = 0;
+        while(number < 1){
+            System.out.printf("Please, enter %c matrix size: ", axis);
+            number = getIntString();
+            if(number < 1){
+                System.out.println("This value should be positive!");
+            }
+        }
+        return number;
+    }
+    /**
+     * Метод getMatrix считывает из консоли набор записанных в виде матрицы чисел
+     * @param sizeX - количество чисел в строке
+     * @param sizeY - количество чисел в столбце
+     * @return array - двумерный массив из считанных значений
+     */
+    public static int[] @Nullable [] getMatrix(int sizeX, int sizeY){
         System.out.println("Enter your matrix here:");
         int[][] array = new int[sizeX][sizeY];
         for(int y = 0; y < sizeY; y++){
@@ -48,9 +77,13 @@ public class ConsoleInput {
                 }
             }
         }
+        scanner.nextLine();
         return array;
     }
 
+    /**
+     * Метод close закрывает Scanner
+     */
     public static void close(){
         scanner.close();
     }
