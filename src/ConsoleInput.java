@@ -43,6 +43,17 @@ public class ConsoleInput {
         System.out.print("Enter your command: ");
         return ConsoleInput.getIntString();
     }
+    public static int getPositiveNumber(){
+        int number = 0;
+        while(number < 1){
+            number = getIntString();
+            if(number < 1){
+                System.out.println("This value should be positive!");
+            }
+        }
+        return number;
+    }
+
     public static int getSize(char axis){
         int number = 0;
         while(number < 1){

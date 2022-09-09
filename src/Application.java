@@ -37,35 +37,35 @@ public class Application {
                         System.out.println("Frequency matrix was successfully created");
                         status = Status.CALCULATED;
                     }
+                    else{
+                        System.out.println("No original matrix yet!");
+                    }
                     break;
                 }
                 case 3: {
                     if (status == Status.CALCULATED){
                         calculation.printMatrix();
                     }
+                    else{
+                        System.out.println("No frequent matrix yet!");
+                    }
                     break;
                 }
-                case 4: {
+                case 4, 5: {
+                    boolean isHigh = command == 4;
                     if (status == Status.CALCULATED){
-                        int number = 5;
-                        int[] array = calculation.createFrequencyArray(matrix, number);
-                        System.out.printf("%d the most frequent elements: ", number);
+                        System.out.println("Please, enter a number of elements");
+                        int number = ConsoleInput.getPositiveNumber();
+                        int[] array = calculation.createFrequencyArray(matrix, number, isHigh);
+                        if(isHigh) System.out.print("The most frequent elements: ");
+                        else System.out.print("The least frequent elements: ");
                         for(int i = 0; i < array.length; i++){
                             System.out.printf("%d ", array[i]);
                         }
                         System.out.println("");
                     }
-                    break;
-                }
-                case 5:{
-                    if (status == Status.CALCULATED){
-                        int number = 5;
-                        int[] array = calculation.leastFrequencyArray(matrix, number);
-                        System.out.printf("%d the least frequent elements: ", number);
-                        for(int i = 0; i < array.length; i++){
-                            System.out.printf("%d ", array[i]);
-                        }
-                        System.out.println("");
+                    else{
+                        System.out.println("No frequent matrix yet!");
                     }
                     break;
                 }
