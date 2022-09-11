@@ -19,7 +19,7 @@ public class Application {
      */
     public static void main(String[] args) {
         Matrix matrix = new Matrix();
-        FrequencyMatrix calculation = new FrequencyMatrix();
+        Matrix calculation = new Matrix();
         boolean end = false;
         printMenu();
         while (! end){
@@ -33,7 +33,7 @@ public class Application {
                 }
                 case 2: {
                     if (status == Status.FILLED){
-                        calculation.createMatrix(matrix);
+                        calculation.createFrequencyMatrix(matrix);
                         System.out.println("Frequency matrix was successfully created");
                         status = Status.CALCULATED;
                     }
@@ -57,12 +57,7 @@ public class Application {
                         System.out.println("Please, enter a number of elements");
                         int number = ConsoleInput.getPositiveNumber();
                         int[] array = calculation.createFrequencyArray(matrix, number, isHigh);
-                        if(isHigh) System.out.print("The most frequent elements: ");
-                        else System.out.print("The least frequent elements: ");
-                        for(int i = 0; i < array.length; i++){
-                            System.out.printf("%d ", array[i]);
-                        }
-                        System.out.println("");
+                        calculation.printFrequencyArray(isHigh, array);
                     }
                     else{
                         System.out.println("No frequent matrix yet!");
